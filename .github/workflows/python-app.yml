@@ -1,0 +1,40 @@
+name: Python CI
+
+# Trigger the workflow on any push to the main branch or pull request
+
+on:
+    push:
+        branches:
+            - vinayak
+    pull_request:
+        branches:
+            - vinayak
+
+
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: Check out code
+              uses: actions/checkout@v2
+
+            - name: Set up Python
+              uses: action/setup-pyton@v2
+              with:
+                python-version: '3.8'
+
+            - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+
+            - name: Run dependency
+              run: pytest
+
+
+
+
+            
